@@ -91,6 +91,4 @@ Feel free to fork this repository and contribute! If you find a bug or have a su
 
 ***
 
-## 📄 License
-
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
+    
