@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Whatsapp</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/app.js" defer></script>
+</head>
+
+<body>
+    <h1>All Chats!</h1>
+
+    <form method="GET" action="/chats/new">
+        <button type="submit">➕ New Chat</button>
+    </form>
+    <br />
+
+    <div class="chat-grid-container">
+        <% for (let chat of chats) { %>
+            <div class="chat">
+                <p>From: <%= chat.from %>
+                </p>
+                <div class="msg">
+                    <p>
+                        <%= chat.msg %>
+                    </p>
+
+                    <form method="GET" action="/chats/<%= chat._id %>/edit">
+                        <button type="submit">✏️ Edit</button>
+                    </form>
+
+                    <form method="POST" action="/chats/<%= chat._id %>?_method=DELETE" class="delete-form">
+                        <button type="button" class="delete-btn">🗑 Delete</button>
+                    </form>
+                </div>
+                <p>Received by: <%= chat.to %>
+                </p>
+                <hr />
+                <p>Time: <%= chat.created_at.toLocaleTimeString() %>
+                </p>
+                <p>Date: <%= chat.created_at.toDateString() %>
+                </p>
+            </div>
+            <% } %>
+    </div>
+
+    <div id="deleteModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <p><i>Do you really want to delete this chat?</i></p>
+            <div class="actions">
+                <button id="confirmDelete">Yes</button>
+                <button id="cancelDelete">No</button>
+            </div>
+        </div>
+    </div>
+    <br />
+
+    <i>Bye !</i>
+</body>
+
+</html>
